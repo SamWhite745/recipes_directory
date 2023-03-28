@@ -1,13 +1,14 @@
 require_relative 'lib/database_connection'
+require_relative 'lib/recipe_repository'
+require_relative 'lib/recipe'
+
 
 # We need to give the database name to the method `connect`.
-DatabaseConnection.connect('recipes_directory')
+DatabaseConnection.connect('recipe_directory')
 
-# Perform a SQL query on the database and get the result set.
-# sql = 'SELECT id, title FROM albums;'
-# result = DatabaseConnection.exec_params(sql, [])
+recipe_repo = RecipeRepository.new
 
-# # Print out each record from the result set .
-# result.each do |record|
-#   p record
-# end
+recipe_repo.all.each do |recipe|
+  puts "#{recipe.id} - #{recipe.name} - #{recipe.avg_cooking_time} - #{recipe.rating}"
+  # p recipe
+end

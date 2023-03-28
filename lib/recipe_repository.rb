@@ -32,7 +32,7 @@ class RecipeRepository
     # SELECT id, name, cohort_name FROM Recipes WHERE id = $1;
 
     # Returns a single Recipe object.
-    sql = "SELECT * FROM recipes WHERE id = $1"
+    sql = "SELECT * FROM recipes WHERE id = $1;"
     result_set = DatabaseConnection.exec_params(sql, [id])
 
     recipe = Recipe.new
