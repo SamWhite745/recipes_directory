@@ -29,5 +29,16 @@ describe RecipeRepository do
     expect(recipes[1].avg_cooking_time).to eq 2
     expect(recipes[1].rating).to eq 4
   end
+
+  it "finds a single recipe by id" do
+    repo = RecipeRepository.new
+
+    recipe = repo.find(1)
+
+    expect(recipe.id).to eq 1
+    expect(recipe.name).to eq 'Pasta'
+    expect(recipe.avg_cooking_time).to eq 12
+    expect(recipe.rating).to eq 5
+  end
   # (your tests will go here).
 end

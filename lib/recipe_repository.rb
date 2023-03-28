@@ -32,5 +32,15 @@ class RecipeRepository
     # SELECT id, name, cohort_name FROM Recipes WHERE id = $1;
 
     # Returns a single Recipe object.
+    sql = "SELECT * FROM recipes WHERE id = $1"
+    result_set = DatabaseConnection.exec_params(sql, [id])
+
+    recipe = Recipe.new
+    recipe.id = result_set[0]['id'].to_i
+    recipe.name = result_set[0]['name']
+    recipe.avg_cooking_time = result_set[0]['avg_cooking_time'].to_i
+    recipe.rating = result_set[0]['rating'].to_i
+
+    return recipe
   end
 end
