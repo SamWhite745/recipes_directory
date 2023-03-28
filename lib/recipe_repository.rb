@@ -7,6 +7,22 @@ class RecipeRepository
     # SELECT id, name, cohort_name FROM Recipes;
 
     # Returns an array of Recipe objects.
+    sql = "SELECT * FROM recipes;"
+    result_set = DatabaseConnection.exec_params(sql, [])
+
+    recipes = []
+
+    result_set.each { |record|
+      recipe = Recipe.new
+      recipe.id = record['id'].to_i
+      recipe.name = record['name']
+      recipe.avg_cooking_time = record['avg_cooking_time'].to_i
+      recipe.rating = record['rating'].to_i
+
+      recipes << recipe
+    }
+
+    return recipes
   end
 
   # Gets a single record by its ID
